@@ -7,13 +7,13 @@ session_start();
 <head>
 	<meta charset="UTF-8">
 	<title>Registro</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
+	<link rel="stylesheet" type="text/css" href="/estilo.css" />
 </head>
 <body>
 <div id="contenedor">
 <?php
-require('includes/vistas/comun/cabecera.php');
-require('includes/vistas/comun/sidebarIzq.php');
+require('comun/cabecera.php');
+require('comun/sidebarIzq.php');
 ?>
 <main>
 	<article>
@@ -45,8 +45,8 @@ require('includes/vistas/comun/sidebarIzq.php');
 	</article>
 </main>
 <?php
-require('includes/vistas/comun/sidebarDer.php');
-require('includes/vistas/comun/pie.php');
+require('comun/sidebarDer.php');
+require('comun/pie.php');
 ?>
 </div>
 </body>
