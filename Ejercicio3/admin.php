@@ -1,44 +1,35 @@
+<?php
+//Inicio del procesamiento
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="estilo.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Portada</title>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css" />
 </head>
-
 <body>
-
-<div id="contenedor"> <!-- Inicio del contenedor -->
-
-	<?php include 'cabecera.php'; ?>
-
-	<?php include 'sidebarIzq.php'; ?>
-
-	<main>
-        <h1>Consola de Administracion</h1>
-        <?php
-            if(session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
-            
-            if(isset($_SESSION['esAdmin'])){
-
-                
-                echo "Aqui estarían los controles para la administraci&oacuten de la web.";
-            }
-            else {
-                echo "Usted no tiene permisos de administrador";
-
-            }
-        ?>
-	</main>
-
-
-	<?php include 'sidebarDer.php'; ?>
-
-	<?php include 'pie.php'; ?>
-
-</div> <!-- Fin del contenedor -->
-
+<div id="contenedor">
+<?php
+require('cabecera.php');
+require('sidebarIzq.php');
+?>
+<main>
+	<article>
+<?php if (! isset($_SESSION['esAdmin']) || !$_SESSION['esAdmin']): ?>
+		<h1>Acceso denegado!</h1>
+		<p>No tienes permisos suficientes para administrar la web.</p>
+<?php else: ?>
+		<h1>Consola de administración</h1>
+		<p>Aquí estarían todos los controles de administración</p>
+<?php endif; ?>
+	</article>
+</main>
+<?php
+require('sidebarDer.php');
+require('pie.php');
+?>
+</div>
 </body>
 </html>

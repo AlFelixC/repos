@@ -1,51 +1,39 @@
+<?php
+//Inicio del procesamiento
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="estilo.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Portada</title>
+	<meta charset="UTF-8">
+	<title>Contenido</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css" />
 </head>
-
 <body>
+<div id="contenedor">
+<?php
+require('cabecera.php');
+require('sidebarIzq.php');
+?>
+<main>
+	<article>
+<?php if (!isset($_SESSION['login'])): ?>
+		<h1>Usuario no registrado!</h1>
+		<p>Debes iniciar sesión para ver el contenido.</p>
+<?php else: ?>
+		<h1>Texto del contenido principal para usuarios</h1>
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam augue sem, molestie vel elementum quis, consequat consectetur velit. Sed malesuada in arcu quis placerat. Proin sed ligula leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer pretium, sapien ut ornare ornare, odio felis vulputate nisi, at hendrerit libero sapien ut sapien. Vestibulum laoreet auctor suscipit. Suspendisse id eros ut diam egestas luctus. Donec consequat, leo eu pretium sollicitudin, metus mi suscipit risus, non porta augue purus nec velit. Donec lobortis magna eget feugiat porttitor. In suscipit arcu quis urna lobortis dapibus.</p>
 
-<div id="contenedor"> <!-- Inicio del contenedor -->
+		<p> Maecenas nec orci mollis, pretium erat in, blandit felis. Etiam vestibulum eu sapien a sagittis. Maecenas eget posuere turpis. Fusce egestas lacus at tortor scelerisque vulputate. Mauris tincidunt massa sem, nec dapibus risus facilisis vitae. Nulla risus sem, sodales at viverra ut, elementum sit amet nisl. Fusce placerat bibendum pharetra. Etiam ultricies metus lectus, eget consequat elit imperdiet a. Sed eu ipsum augue. Phasellus eget iaculis nisl. Sed bibendum, sem posuere pretium sagittis, nibh orci porta urna, id dictum ante felis quis ante. Ut quis tortor vel sapien lacinia rutrum. Morbi at nisi sit amet elit iaculis vulputate. Curabitur dignissim diam ac porta bibendum.</p>
 
-	<?php include 'cabecera.php'; ?>
-
-	<?php include 'sidebarIzq.php'; ?>
-
-	<main>
-	  <article>
-		<h1>Bienvenido a mi web.</h1>
-        <?php
-            if(session_status() == PHP_SESSION_NONE){
-                session_start();
-            }
-
-            if(isset($_SESSION['login']) || isset($_SESSION['esAdmin'])) {
-
-                //Usuarios logeados
-                echo "<img src='img/ej2vader.png' alt='Bienvenido a mi web'>";
-                echo "";
-                echo "Contenido para usuarios que han hecho login. ";
-                echo "En esta zona podras encontrar elementos para la compra y sus pedidos";
-
-            } else {
-                //Usuarios no logeados
-                echo "No hay contenido para usuarios no logeados. Por favor, <a href='login.php'> haga login</a> para ver tu contenido.";
-            }
-        ?>
-
-	  </article>
-
+		<p>Proin elementum blandit diam id ullamcorper. Duis semper nunc semper nisi vehicula consectetur. Donec quis ante iaculis, rhoncus ante et, pellentesque sem. Cras tempus rutrum sapien vitae feugiat. Cras dapibus ut diam a commodo. Duis vel leo arcu. Suspendisse mollis purus eget eros elementum, vel pulvinar elit interdum. Etiam sit amet orci mi. Integer tristique lacus eu consequat rutrum. Sed tempor hendrerit mauris, eu sollicitudin ante ullamcorper scelerisque. Praesent ullamcorper sed mauris porta aliquet.</p>
+<?php endif; ?>
+	</article>
 </main>
-
-
-	<?php include 'sidebarDer.php'; ?>
-
-	<?php include 'pie.php'; ?>
-
-</div> <!-- Fin del contenedor -->
-
+<?php
+require('sidebarDer.php');
+require('pie.php');
+?>
+</div>
 </body>
 </html>
