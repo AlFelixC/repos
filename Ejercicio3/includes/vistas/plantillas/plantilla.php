@@ -2,23 +2,23 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title><?= $tituloPagina ?></title>
-	<link rel="stylesheet" type="text/css" href="/estilo.css" />
+    <title><?= $tituloPagina ?></title>
+    <link rel="stylesheet" type="text/css" href="estilo.css" />
 </head>
 <body>
 <div id="contenedor">
 <?php
-require('comun/cabecera.php');
-require('comun/sidebarIzq.php');
+require(dirname(__DIR__).'/comun/cabecera.php');
+require(dirname(__DIR__).'/comun/sidebarIzq.php');
 ?>
-<main>
-	<article>
-	<?= $contenidoPrincipal ?>
-	</article>
-</main>
+	<main>
+		<article>
+			<?= $contenidoPrincipal ?>
+		</article>
+	</main>
 <?php
-require('comun/sidebarDer.php');
-require('comun/pie.php');
+require(dirname(__DIR__).'/comun/sidebarDer.php');
+require(dirname(__DIR__).'/comun/pie.php');
 ?>
 </div>
 </body>

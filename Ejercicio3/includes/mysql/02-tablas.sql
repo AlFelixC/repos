@@ -1,5 +1,5 @@
 /*
-  Recuerda que debes deshabilitar la opción "Enable foreign key checks" para evitar problemas a la hora de importar el script.
+  Recuerda que deshabilitar la opción "Enable foreign key checks" para evitar problemas a la hora de importar el script.
 */
 DROP TABLE IF EXISTS `RolesUsuario`;
 DROP TABLE IF EXISTS `Roles`;

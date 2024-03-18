@@ -8,7 +8,7 @@ if (! $formEnviado ) {
 	exit();
 }
 
-require_once __DIR__.'/utils.php';
+require_once __DIR__.'/includes/utils.php';
 
 $erroresFormulario = [];
 
@@ -68,48 +68,33 @@ if (count($erroresFormulario) === 0) {
 		exit();
 	}
 }
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="estilo.css" />
-</head>
-<body>
-<div id="contenedor">
-<?php
-require('cabecera.php');
-require('sidebarIzq.php');
-?>
-<main>
-	<article>
-		<h1>Acceso al sistema</h1>
-		<?= generaErroresGlobalesFormulario($erroresFormulario) ?>
-		<form action="procesarLogin.php" method="POST">
-		<fieldset>
-            <legend>Usuario y contraseña</legend>
-            <div>
-                <label for="nombreUsuario">Nombre de usuario:</label>
-				<input id="nombreUsuario" type="text" name="nombreUsuario" value="<?= $nombreUsuario ?>" />
-				<?=  generarError('nombreUsuario', $erroresFormulario) ?>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-				<input id="password" type="password" name="password" value="<?= $password ?>" />
-				<?=  generarError('password', $erroresFormulario) ?>
-            </div>
-            <div>
-				<button type="submit" name="login">Entrar</button>
-			</div>
-		</fieldset>
-		</form>
-	</article>
-</main>
-<?php
-require('sidebarDer.php');
-require('pie.php');
-?>
-</div>
-</body>
-</html>
+
+$tituloPagina = 'Login';
+
+$erroresGlobalesFormulario = generaErroresGlobalesFormulario($erroresFormulario);
+$erroresCampos = generaErroresCampos(['nombreUsuario', 'password'], $erroresFormulario);
+$contenidoPrincipal= <<<EOS
+<h1>Acceso al sistema</h1>
+$erroresGlobalesFormulario
+<form action="procesarLogin.php" method="POST">
+<fieldset>
+	<legend>Usuario y contraseña</legend>
+	<div>
+		<label for="nombreUsuario">Nombre de usuario:</label>
+		<input id="nombreUsuario" type="text" name="nombreUsuario" value="$nombreUsuario" />
+		{$erroresCampos['nombreUsuario']}
+	</div>
+	<div>
+		<label for="password">Password:</label>
+		<input id="password" type="password" name="password" value="$password" />
+		{$erroresCampos['password']}
+	</div>
+	<div>
+		<button type="submit" name="login">Entrar</button>
+	</div>
+</fieldset>
+</form>
+EOS;
+
+
+require __DIR__.'/includes/vistas/plantillas/plantilla.php';

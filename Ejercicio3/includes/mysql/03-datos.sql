@@ -1,5 +1,5 @@
 /*
-  Recuerda deshabilitar la opción "Enable foreign key checks" para evitar problemas a la hora de importar el script.
+  Recuerda que deshabilitar la opción "Enable foreign key checks" para evitar problemas a la hora de importar el script.
 */
 TRUNCATE TABLE `RolesUsuario`;
 TRUNCATE TABLE `Roles`;
