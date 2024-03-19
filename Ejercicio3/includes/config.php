@@ -2,6 +2,30 @@
 
 require_once __DIR__.'/Aplicacion.php';
 
+spl_autoload_register(function ($class) {
+    $prefix = 'es\\ucm\\fdi\\aw\\';
+    $base_dir = __DIR__ . '/';
+
+    // comprueba si la clase usa el prefijo
+    $len = strlen($prefix);
+    if (strncmp($prefix, $class, $len) !== 0) {
+        // no, pasa al siguiente autoloader registrado
+        return;
+    }
+
+    // obtén el nombre de la clase relativo
+    $relative_class = substr($class, $len);
+
+    // reemplaza el prefijo del espacio de nombres con la ruta base, reemplaza los separadores de espacio de nombres
+    // con separadores de directorio en el nombre de la clase relativa, añade .php
+    $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
+
+    // si el archivo existe, requiérelo
+    if (file_exists($file)) {
+        require $file;
+    }
+});
+
 /**
  * Parámetros de conexión a la BD
  */

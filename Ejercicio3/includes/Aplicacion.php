@@ -3,7 +3,7 @@
 /**
  * Clase que mantiene el estado global de la aplicación.
  */
-namespace es\ucm\fdi\aw
+namespace es\ucm\fdi\aw;
 
 class Aplicacion
 {
